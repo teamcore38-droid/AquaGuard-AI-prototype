@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-borderline;
+  }
+
+  body {
+    @apply min-h-screen bg-abyss font-sans text-white antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(45, 212, 191, 0.08), transparent 24%),
+      radial-gradient(circle at top right, rgba(77, 168, 255, 0.08), transparent 26%),
+      linear-gradient(180deg, #081221 0%, #07111f 38%, #050c16 100%);
+  }
+
+  button {
+    @apply transition duration-200;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-3xl border border-white/10 bg-white/[0.04] shadow-panel backdrop-blur-xl;
+  }
+
+  .panel-glow {
+    @apply rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] shadow-glow backdrop-blur-xl;
+  }
+
+  .text-muted {
+    @apply text-sm text-mist;
+  }
+
+  .soft-ring {
+    @apply ring-1 ring-white/10;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 17, 31, 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(77, 168, 255, 0.28);
+  border-radius: 999px;
+}
