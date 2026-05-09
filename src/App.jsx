@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import AppShell from "./components/layout/AppShell";
 
+const LandingPage = lazy(() => import("./pages/LandingPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const LiveMonitoringPage = lazy(() => import("./pages/LiveMonitoringPage"));
@@ -11,7 +12,7 @@ const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 
 function RequireAuth() {
   const isAuthed = window.localStorage.getItem("aquaguard-auth") === "true";
-  return isAuthed ? <Outlet /> : <Navigate to="/" replace />;
+  return isAuthed ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
 function ShellRoutes() {
@@ -26,7 +27,8 @@ export default function App() {
   return (
     <Suspense fallback={<AppLoader />}>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
         <Route element={<RequireAuth />}>
           <Route element={<ShellRoutes />}>
@@ -38,7 +40,7 @@ export default function App() {
           </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );
